@@ -2,14 +2,18 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
+    <LIVE555_DIR>$(SolutionDir)</LIVE555_DIR>
   </PropertyGroup>
-  <PropertyGroup />
+  <PropertyGroup>
+    <OutDir>$(SolutionDir)__output\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)__obj\$(PlatformShortName)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>..\BasicUsageEnvironment\include;..\UsageEnvironment\include;..\groupsock\include;..\liveMedia\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(LIVE555_DIR)\BasicUsageEnvironment\include;$(LIVE555_DIR)\UsageEnvironment\include;$(LIVE555_DIR)\groupsock\include;$(LIVE555_DIR)\liveMedia\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(LIVE555_DIR)/libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(LIVE555_DIR)/libs;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>BasicUsageEnvironment.lib;groupsock.lib;liveMedia.lib;UsageEnvironment.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
